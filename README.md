@@ -1,9 +1,9 @@
-# cmonti
+# xmontc
 
 Interactive terminal portfolio for Carlos Monti, built with [Ink](https://github.com/vadimdemedes/ink) (React for CLIs).
 
 ```bash
-npx cmonti
+npx xmontc
 ```
 
 Navigate with the keyboard: `↑↓` move, `enter` open, `esc` back, `g` GitHub, `w` website, `q` quit.

@@ -19,7 +19,7 @@ describe('App', () => {
     expect(frame).toContain('Recent Projects');
     expect(frame).toContain('▶ Blockout');
     expect(frame).toContain('quit');
-    expect(frame).toContain('cmonti v');
+    expect(frame).toContain('xmontc v');
   });
 
   it('moves the selection with arrow keys', async () => {

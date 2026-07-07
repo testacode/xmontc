@@ -1,10 +1,10 @@
 {
-  "name": "cmonti",
+  "name": "xmontc",
   "version": "0.1.0",
-  "description": "Carlos Monti's interactive terminal portfolio. Run `npx cmonti`.",
+  "description": "Carlos Monti's interactive terminal portfolio. Run `npx xmontc`.",
   "type": "module",
   "bin": {
-    "cmonti": "dist/index.js"
+    "xmontc": "dist/index.js"
   },
   "files": [
     "dist"
@@ -33,7 +33,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/testacode/cmonti.git"
+    "url": "git+https://github.com/testacode/xmontc.git"
   },
   "dependencies": {
     "ink": "^7.1.0",

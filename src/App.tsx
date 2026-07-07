@@ -26,7 +26,7 @@ export function App() {
       {screen === 'about' && <About />}
       {screen === 'projects' && <Projects />}
       <Box marginTop={1}>
-        <Text color={theme.dim}>cmonti v{__VERSION__}</Text>
+        <Text color={theme.dim}>xmontc v{__VERSION__}</Text>
       </Box>
     </Box>
   );
