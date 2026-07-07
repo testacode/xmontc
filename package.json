@@ -4,7 +4,7 @@
   "description": "Carlos Monti's interactive terminal portfolio. Run `npx cmonti`.",
   "type": "module",
   "bin": {
-    "cmonti": "./dist/index.js"
+    "cmonti": "dist/index.js"
   },
   "files": [
     "dist"
