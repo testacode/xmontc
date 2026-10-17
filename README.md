@@ -6,6 +6,8 @@ Interactive terminal portfolio for Carlos Monti, built with [Ink](https://github
 npx xmontc
 ```
 
+Same content as [carlosmonti.com](https://carlosmonti.com) — the site's `resume.ts` is the single source and syncs `/resume.json` before each publish.
+
 Navigate with the keyboard: `↑↓` move, `enter` open, `esc` back, `g` GitHub, `w` website, `q` quit.
 
 ## Development
