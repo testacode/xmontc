@@ -1,15 +1,66 @@
+import resumeJson from './resume.json' with { type: 'json' };
+
+// resume.json is synced from the resume site (npm run sync) — edit content there, not here.
+type Experience = {
+  company: string;
+  title: string;
+  startDate: string;
+  endDate: string | null;
+  description: string;
+  contractorCompany?: string;
+};
+
+type Resume = {
+  personal: {
+    name: string;
+    title: string;
+    tagline: string;
+    bio: string;
+    address: { city: string; country: string };
+  };
+  experience: Experience[];
+};
+
+const resume = resumeJson as Resume;
+
+const year = (date: string | null) => (date ? date.slice(0, 4) : 'now');
+
+const span = (from: string, to: string | null) => {
+  const [a, b] = [year(from), year(to)];
+  return a === b ? a : `${a}–${b}`;
+};
+
+const sentences = (text: string, count: number) =>
+  text.split(/(?<=\.)\s+/).slice(0, count).join(' ');
+
+// Contractor gigs collapse into one line per agency (Globant — Disney, Deloitte…).
+export function experienceLines(list: readonly Experience[]): string[] {
+  const direct: string[] = [];
+  const agencies = new Map<string, Experience[]>();
+
+  for (const e of list) {
+    if (e.contractorCompany) {
+      agencies.set(e.contractorCompany, [...(agencies.get(e.contractorCompany) ?? []), e]);
+    } else {
+      direct.push(`${e.company} — ${e.title} (${span(e.startDate, e.endDate)}), ${sentences(e.description, 1)}`);
+    }
+  }
+
+  const grouped = [...agencies].map(([agency, gigs]) => {
+    const clients = gigs.map((g) => g.company).join(', ');
+    return `${agency} — ${clients} (${span(gigs.at(-1)!.startDate, gigs[0]!.endDate)})`;
+  });
+
+  return [...direct, ...grouped];
+}
+
 export const profile = {
-  name: 'Carlos Monti',
-  title: 'Senior Frontend Engineer',
-  location: 'Buenos Aires, Argentina',
-  tagline: 'Building polished web experiences with a passion for clean code and continuous learning',
-  bio: 'Frontend developer with 10+ years of experience crafting web applications. Currently focused on TypeScript, React, and Next.js, building scalable solutions for large-scale products.',
-  experience: [
-    'Despegar.com — Senior Software Engineer (2023–now), AI chatbot & post-booking experiences',
-    'Blockchain.com — Senior Frontend (2022), non-custodial crypto wallet',
-    'Elementum — Senior Frontend (2017–2022), React app from scratch, cross-team reviews',
-    'Globant — Disney, Deloitte, Thomas Cook (2011–2017)',
-  ],
+  name: resume.personal.name,
+  title: resume.personal.title,
+  location: `${resume.personal.address.city}, ${resume.personal.address.country}`,
+  tagline: resume.personal.tagline,
+  bio: sentences(resume.personal.bio, 2),
+  experience: experienceLines(resume.experience),
   stack: ['TypeScript', 'React', 'Next.js', 'Node.js', 'Three.js'],
   philosophy: [
     'Content first — design serves the content, never competes with it.',
