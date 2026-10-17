@@ -13,7 +13,7 @@
 
 ## Stack y datos
 
-Ink 7 + React 19 + TypeScript (ESM), tsup, vitest + ink-testing-library, Node ≥22. Los datos del perfil salen de `src/data/resume.json`, que se sincroniza desde `https://carlosmonti.com/resume.json` (repo `resume` = fuente única) con `npm run sync`; `prepublishOnly` lo corre antes de publicar. `profile.ts` solo deriva (stack y philosophy son locales). `projects.ts` todavía es una copia a mano.
+Ink 7 + React 19 + TypeScript (ESM), tsup, vitest + ink-testing-library, Node ≥22. Los datos del perfil salen de `src/data/resume.json`, que se sincroniza desde `https://carlosmonti.com/resume.json` (repo `resume` = fuente única) con `npm run sync`; `prepublishOnly` lo corre antes de publicar. `profile.ts` solo deriva (stack y philosophy son locales). `projects.ts` también deriva de `resume.json` (`resume.projects`); solo el orden y el set de featured son locales.
 
 ## Gotchas
 
